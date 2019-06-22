@@ -1,12 +1,12 @@
 var express = require('express'),
   axios = require('axios'),
-  exphbs  = require('express-handlebars'),
+  exphbs = require('express-handlebars'),
   config = require('./config');
 
 var app = express();
 
 var hbs = exphbs.create({
-	defaultLayout	: 'main',
+  defaultLayout: 'main',
 });
 
 app.use("/public", express.static(__dirname + '/public'));
@@ -21,7 +21,7 @@ if (port == null || port == "") {
 
 var bearerkey = "Bearer " + config.key;
 
-app.get('/', function(req, res){
+app.get('/', function(req, res) {
   res.render('home');
 });
 
@@ -60,11 +60,15 @@ app.get('/offer_requests', function(req, res) {
   axios.post('https://api.duffel.com/air/offer_requests', postData, axiosConfig)
     .then(response => {
       console.log("Response loaded from duffel");
-      res.send(response.data);
+
+      var mydata = removeOutOfPolicy(response.data, 3500.00);
+      res.send(mydata);
+      //var mydata = removeOutOfPolicy(response.data, 7500.00);
+      //res.send(mydata);
     })
     .catch((error) => {
       res.send(error);
-      console.log(error.response.data);
+      console.log(error);
     })
 
 });
@@ -74,8 +78,20 @@ app.get('/offer_requests', function(req, res) {
 // is a isRedEye
 // connectionCount
 // totalTripTime
-function isRedEye(){
+function removeOutOfPolicy(mydata, price) {
 
+  var newOffers = [];
+
+  for (var i = 0; i < mydata.data.offers.length; i++) {
+    var total = mydata.data.offers[i].total_amount;
+    if(total <= price) {
+      newOffers.push(mydata.data.offers[i]);
+    }
+  }
+
+  mydata.data.offers = newOffers;
+
+  return mydata;
 }
 
 app.listen(port, () =>

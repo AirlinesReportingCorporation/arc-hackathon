@@ -1,11 +1,13 @@
+// ===================================== //
+
 // define isRedeye
 // find total # of redeyes within a slice
 - loop through offers
 - loop through slices
-- loop through a segment
+- loop through segments
 - find arriving_at dates
 - find departing_at dates
-- compare dates -> if dates difference is more than 1-> then redeye flight
+- compare dates -> if dates difference is more than 1-> then redeye flight (whatever the def is)
 - increment redeye count -> multiply by weighting
 /*
 
@@ -15,8 +17,8 @@ const redeyeWeighting = **;
 for(offer in offers) {
   for(slice in offer.slices){
     for(segment in slice.segments){
-      var departDate = segment.departing_at;
-      var arrivalDate = segment.arriving_at;
+      var departDate = segment.departing_at.split("/")[1];
+      var arrivalDate = segment.arriving_at.split("/")[1];
 
       if(abs(departDate - arrivalDate) > 1 ) {
         redeyeCount++;
@@ -28,13 +30,16 @@ for(offer in offers) {
 return redeyeCount * redeyeWeighting;
 */
 
+// ===================================== //
+
 // connectionCount
 - loop through offers
 - loop through slices
-- loop through a segment
+- loop through segments
 - if size of segment array more than 1 -> store size as # of connections
 
 var totalConnectionCount = 0;
+const connectionWeighting = **;
 
 for(offer in offers) {
   for(slice in offer.slices){
@@ -46,4 +51,9 @@ for(offer in offers) {
   }
 }
 
-// totalTrip Time
+return totalConnectionCount * connectionWeighting;
+
+// ===================================== //
+
+// layover time - on slices with more than 1 segment, find time between arrival and departing times
+-
