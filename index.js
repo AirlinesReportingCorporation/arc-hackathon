@@ -25,6 +25,10 @@ app.get('/', function(req, res) {
   res.render('home');
 });
 
+app.get('/order', function(req, res) {
+  res.render('home');
+});
+
 app.get('/offer_requests', function(req, res) {
 
   var cabin = req.query.cabin ? req.query.cabin : "economy";
@@ -57,11 +61,11 @@ app.get('/offer_requests', function(req, res) {
     }
   };
 
-  axios.post('https://api.duffel.com/air/offer_requests', postData, axiosConfig)
+  axios.get('http://localhost:8000/public/consolidated.json')
     .then(response => {
       console.log("Response loaded from duffel");
+      var mydata = dedupe(response.data);
 
-      var mydata = removeOutOfPolicy(response.data, 3500.00);
       res.send(mydata);
       //var mydata = removeOutOfPolicy(response.data, 7500.00);
       //res.send(mydata);
@@ -70,7 +74,21 @@ app.get('/offer_requests', function(req, res) {
       res.send(error);
       console.log(error);
     })
+  /*
+    axios.post('https://api.duffel.com/air/offer_requests', postData, axiosConfig)
+      .then(response => {
+        console.log("Response loaded from duffel");
 
+        var mydata = removeOutOfPolicy(response.data, 3500.00);
+        res.send(mydata);
+        //var mydata = removeOutOfPolicy(response.data, 7500.00);
+        //res.send(mydata);
+      })
+      .catch((error) => {
+        res.send(error);
+        console.log(error);
+      })
+  */
 });
 
 
@@ -84,7 +102,7 @@ function removeOutOfPolicy(mydata, price) {
 
   for (var i = 0; i < mydata.data.offers.length; i++) {
     var total = mydata.data.offers[i].total_amount;
-    if(total <= price) {
+    if (total <= price) {
       newOffers.push(mydata.data.offers[i]);
     }
   }
@@ -92,6 +110,92 @@ function removeOutOfPolicy(mydata, price) {
   mydata.data.offers = newOffers;
 
   return mydata;
+}
+
+function getUniqueKeys(offer) {
+
+  var uniqueid = "";
+
+  for (var i = 0; i < offer.slices.length; i++) {
+    for (var j = 0; j < offer.slices[i].segments.length; j++) {
+      var segments = offer.slices[i].segments[j].marketing_carrier_flight_number;
+      var cabin = offer.slices[i].segments[j].passengers[0].cabin_class;
+      uniqueid += segments + "" + cabin;
+    }
+  }
+
+  return uniqueid;
+}
+
+function dedupe(mydata) {
+
+  var newOffers = [];
+
+  var offers = mydata.data.offers;
+
+  var map = mydata.data.offers.map(getUniqueKeys);
+
+  var uniques = map.filter( function( item, index, inputArray ) {
+           return inputArray.indexOf(item) == index;
+    });
+
+  //array of matches to loop through
+  var matches = [];
+
+  for (var i = 0; i < uniques.length; i++) {
+
+    var uniqueid = uniques[i];
+
+    var match = [];
+
+    //take note of indices
+    for (var j = 0; j < map.length; j++) {
+      if(uniqueid === map[j]){
+
+        match.push(j);
+      }
+    }
+
+
+
+    matches.push(match);
+
+  }
+
+
+  //loop through matches and pick one per i
+  for (var i = 0; i < matches.length; i++) {
+    var price = offers[matches[i][0]].total_amount;
+    var finalIndex = matches[i][0];
+    console.log(price + ":" + finalIndex);
+    for (var j = 0; j < matches[i].length; j++) {
+      var price2 = offers[matches[i][j]].total_amount;
+      var finalIndex2 = matches[i][j];
+      if(price2 < price){
+        price = price2;
+        finalIndex = finalIndex2;
+      }
+    }
+    newOffers.push(offers[finalIndex]);
+    console.log(offers[finalIndex]);
+  }
+
+  mydata.data.offers = newOffers;
+
+
+  return mydata;
+}
+
+function compareArrays(array1, array2) {
+  var length = array1.length;
+
+  for (var i = 0; i < length; i++) {
+    if (array1[i] != array2[i]) {
+      return false;
+    }
+  }
+
+  return false;
 }
 
 app.listen(port, () =>

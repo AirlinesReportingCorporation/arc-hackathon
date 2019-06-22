@@ -11,7 +11,7 @@
           <div v-for="slice in offer.slices">
             <div v-for="(segment, index) in slice.segments">
               <div class="">
-                \{{index + 1}}. \{{segment.origin.iata_city_code}} to \{{segment.destination.iata_city_code}} (\{{segment.departing_at}}) Airline: \{{segment.operating_carrier.name}}
+                \{{index + 1}}. \{{segment.origin.iata_code}} to \{{segment.destination.iata_code}} (\{{segment.departing_at}}) Airline: \{{segment.operating_carrier.name}}
               </div>
 
 
@@ -20,9 +20,10 @@
               \{{slice.duration.replace("PT", "")}}
             </div>
 
-            <div class="">
-              \{{offer.base_amount}} \{{offer.base_currency}}
-            </div>
+
+          </div>
+          <div class="">
+            \{{offer.total_amount}} \{{offer.base_currency}}
           </div>
 
         </div>
