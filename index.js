@@ -26,7 +26,104 @@ app.get('/', function(req, res) {
 });
 
 app.get('/order', function(req, res) {
-  res.render('home');
+  var cabin = (req.query.cabin === "economy" || req.query.cabin === "premium_economy" || req.query.cabin === "first" || req.query.cabin === "business") ? req.query.cabin : "economy";
+
+  var offerId = req.query.offerid;
+
+  var postData = {
+    data: {
+      "selected_offers": [
+        "off_00009k6Fgc6uCOrQfWyDuy"
+      ],
+      "passengers": [{
+        "type": "adult",
+        "given_name": "Tony",
+        "family_name": "Stark",
+        "born_on": "1970-01-01",
+        "title": "mr",
+        "gender": "m",
+        "email": "tony@example.com",
+        "phone_number": "+12123456789",
+        "id": "pas_00009k6FgMod44KREVIuqe"
+      }],
+      "payments": [{
+        "type": "balance",
+        "amount": "999999.55",
+        "currency": "GBP"
+      }]
+    }
+  };
+
+  let axiosConfig = {
+    headers: {
+      "Content-Type": "application/json",
+      "Accept-Encoding": "gzip",
+      "Duffel-Version": "beta",
+      "Authorization": bearerkey
+    }
+  };
+
+  axios.post('https://api.duffel.com/air/orders', postData, axiosConfig)
+    .then(response => {
+      console.log("Response loaded from duffel");
+      res.send(response.data);
+    })
+    .catch((error) => {
+      res.send(error);
+      console.log(error.response.data);
+    })
+
+});
+
+
+
+app.get('/realoffer', function(req, res) {
+
+  var cabin = (req.query.cabin === "economy" || req.query.cabin === "premium_economy" || req.query.cabin === "first" || req.query.cabin === "business") ? req.query.cabin : "economy";
+
+
+  var postData = {
+    data: {
+      "cabin_class": cabin,
+      "slices": [{
+        "departure_date": "2019-06-24",
+        "destination": "LHR",
+        "origin": "IAD"
+      }, {
+        "departure_date": "2019-07-04",
+        "destination": "IAD",
+        "origin": "LHR"
+      }],
+      "passengers": [{
+        "type": "adult",
+        "id": "pas_00009k6FgMod44KREVIuqe"
+      }]
+    }
+  };
+
+  let axiosConfig = {
+    headers: {
+      "Content-Type": "application/json",
+      "Accept-Encoding": "gzip",
+      "Duffel-Version": "beta",
+      "Access-Control-Allow-Origin": "*",
+      "Authorization": bearerkey
+    }
+  };
+
+  axios.post('https://api.duffel.com/air/offer_requests', postData, axiosConfig)
+    .then(response => {
+      console.log("Response loaded from duffel");
+
+      var mydata = removeOutOfPolicy(response.data, 3500.00);
+      res.send(mydata);
+      //var mydata = removeOutOfPolicy(response.data, 7500.00);
+      //res.send(mydata);
+    })
+    .catch((error) => {
+      res.send(error);
+      console.log(error);
+    })
 });
 
 app.get('/offer_requests', function(req, res) {
@@ -135,9 +232,9 @@ function dedupe(mydata) {
 
   var map = mydata.data.offers.map(getUniqueKeys);
 
-  var uniques = map.filter( function( item, index, inputArray ) {
-           return inputArray.indexOf(item) == index;
-    });
+  var uniques = map.filter(function(item, index, inputArray) {
+    return inputArray.indexOf(item) == index;
+  });
 
   //array of matches to loop through
   var matches = [];
@@ -150,7 +247,7 @@ function dedupe(mydata) {
 
     //take note of indices
     for (var j = 0; j < map.length; j++) {
-      if(uniqueid === map[j]){
+      if (uniqueid === map[j]) {
 
         match.push(j);
       }
@@ -171,7 +268,7 @@ function dedupe(mydata) {
     for (var j = 0; j < matches[i].length; j++) {
       var price2 = offers[matches[i][j]].total_amount;
       var finalIndex2 = matches[i][j];
-      if(price2 < price){
+      if (price2 < price) {
         price = price2;
         finalIndex = finalIndex2;
       }
