@@ -31,7 +31,7 @@ app.get('/order', function(req, res) {
 
 app.get('/offer_requests', function(req, res) {
 
-  var cabin = req.query.cabin ? req.query.cabin : "economy";
+  var cabin = (req.query.cabin === "economy" || req.query.cabin === "premium_economy" || req.query.cabin === "first" || req.query.cabin === "business") ? req.query.cabin : "economy";
 
   var postData = {
     data: {
