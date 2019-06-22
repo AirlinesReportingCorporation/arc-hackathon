@@ -33,18 +33,24 @@ app.get('/order', function(req, res) {
   var postData = {
     data: {
       "selected_offers": [
-        "off_00009k6Fgc6uCOrQfWyDuy"
+        "off_00009k74mqD3mp3JnU18j2"
       ],
       "passengers": [{
         "type": "adult",
-        "given_name": "Tony",
-        "family_name": "Stark",
-        "born_on": "1970-01-01",
+        "given_name": "Adam",
+        "family_name": "West",
+        "born_on": "1979-03-01",
         "title": "mr",
         "gender": "m",
-        "email": "tony@example.com",
+        "email": "test@example.com",
         "phone_number": "+12123456789",
-        "id": "pas_00009k6FgMod44KREVIuqe"
+        "id": "pas_00009k6FgMod44KREVIuqe",
+        "address_line_2": "Ste 300",
+        "address_line_1": "3000 Wilson Blvd",
+        "address_city": "Arlington",
+        "address_region": "Virginia",
+        "address_postal_code": "23453",
+        "address_country_code": "US"
       }],
       "payments": [{
         "type": "balance",
@@ -59,6 +65,7 @@ app.get('/order', function(req, res) {
       "Content-Type": "application/json",
       "Accept-Encoding": "gzip",
       "Duffel-Version": "beta",
+      "Access-Control-Allow-Origin": "*",
       "Authorization": bearerkey
     }
   };
@@ -69,7 +76,7 @@ app.get('/order', function(req, res) {
       res.send(response.data);
     })
     .catch((error) => {
-      res.send(error);
+      res.send(error.response.data);
       console.log(error.response.data);
     })
 
