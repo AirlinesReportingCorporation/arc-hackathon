@@ -7,7 +7,7 @@
 - loop through segments
 - find arriving_at dates
 - find departing_at dates
-- compare dates -> if dates difference is more than 1-> then redeye flight (whatever the def is)
+- compare dates -> if dates difference is more than 1-> then redeye flight
 - increment redeye count -> multiply by weighting
 /*
 
@@ -17,8 +17,9 @@ const redeyeWeighting = **;
 for(offer in offers) {
   for(slice in offer.slices){
     for(segment in slice.segments){
-      var departDate = segment.departing_at.split("/")[1];
-      var arrivalDate = segment.arriving_at.split("/")[1];
+      //date format is in "2019-06-25T10:35:00" split on the dash and get the 2nd value in the split array to get the day value
+      var departDate = segment.departing_at.split("-")[1];
+      var arrivalDate = segment.arriving_at.split("-")[1];
 
       if(abs(departDate - arrivalDate) > 1 ) {
         redeyeCount++;
@@ -56,4 +57,3 @@ return totalConnectionCount * connectionWeighting;
 // ===================================== //
 
 // layover time - on slices with more than 1 segment, find time between arrival and departing times
--
