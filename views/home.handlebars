@@ -1,32 +1,27 @@
 <div id="app" v-cloak>
   <div class="container">
     <div class="row">
-      <div class="col-md-6">
-        <form class="" action="index.html" method="post">
-          test
-        </form>
-      </div>
-      <div class="col-md-6">
+      <div class="col-md-12">
         <div class="offer" v-for="offer in offerObj.data.offers">
 
           <div class="">
             \{{offer.id}}
           </div>
 
-          <div class="">
-            \{{offer.base_amount}} \{{offer.base_currency}}
-          </div>
-
           <div v-for="slice in offer.slices">
             <div v-for="(segment, index) in slice.segments">
               <div class="">
-                \{{index + 1}}. \{{segment.origin.iata_city_code}} to \{{segment.destination.iata_city_code}}
+                \{{index + 1}}. \{{segment.origin.iata_city_code}} to \{{segment.destination.iata_city_code}} (\{{segment.departing_at}}) Airline: \{{segment.operating_carrier.name}}
               </div>
 
 
             </div>
             <div class="">
               \{{slice.duration.replace("PT", "")}}
+            </div>
+
+            <div class="">
+              \{{offer.base_amount}} \{{offer.base_currency}}
             </div>
           </div>
 

@@ -1,9 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700&display=swap');
+
 [v-cloak] {
   display: none;
 }
 
+body {
+  font-family: "Source Sans Pro", arial, sans-serif;
+  font-size: 18px;
+}
+
 .offer {
-  border: 1px solid #000000;
   padding: 10px;
   margin: 10px 0;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }

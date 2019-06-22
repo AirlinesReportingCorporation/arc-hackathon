@@ -27,13 +27,19 @@ app.get('/', function(req, res){
 
 app.get('/offer_requests', function(req, res) {
 
+  var cabin = req.query.cabin ? req.query.cabin : "economy";
+
   var postData = {
     data: {
-      "cabin_class": "economy",
+      "cabin_class": cabin,
       "slices": [{
-        "departure_date": "2019-08-08",
-        "destination": "JFK",
-        "origin": "LON"
+        "departure_date": "2019-06-24",
+        "destination": "LHR",
+        "origin": "IAD"
+      }, {
+        "departure_date": "2019-07-04",
+        "destination": "IAD",
+        "origin": "LHR"
       }],
       "passengers": [{
         "type": "adult"
@@ -53,7 +59,7 @@ app.get('/offer_requests', function(req, res) {
 
   axios.post('https://api.duffel.com/air/offer_requests', postData, axiosConfig)
     .then(response => {
-      console.log(response.data);
+      console.log("Response loaded from duffel");
       res.send(response.data);
     })
     .catch((error) => {
@@ -62,6 +68,15 @@ app.get('/offer_requests', function(req, res) {
     })
 
 });
+
+
+//functions to define trip friction
+// is a isRedEye
+// connectionCount
+// totalTripTime
+function isRedEye(){
+
+}
 
 app.listen(port, () =>
   console.log(`Example app listening on port ${port}!`)
