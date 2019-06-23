@@ -33,7 +33,7 @@ app.get('/slides', function(req, res) {
 
 
 app.get('/', function(req, res) {
-  res.render('home');
+  res.render('home', {layout: 'main2'});
 });
 
 app.get('/order', function(req, res) {
