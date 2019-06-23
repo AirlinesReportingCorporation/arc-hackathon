@@ -1,0 +1,199 @@
+/*
+Monokai style - ported by Luigi Maselli - http://grigio.org
+*/
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap-grid.min.css');
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #272822;
+  color: #ddd;
+}
+
+.hljs-tag,
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-strong,
+.hljs-name {
+  color: #f92672;
+}
+
+.hljs-code {
+  color: #66d9ef;
+}
+
+.hljs-class .hljs-title {
+  color: white;
+}
+
+.hljs-attribute,
+.hljs-symbol,
+.hljs-regexp,
+.hljs-link {
+  color: #bf79db;
+}
+
+.hljs-string,
+.hljs-bullet,
+.hljs-subst,
+.hljs-title,
+.hljs-section,
+.hljs-emphasis,
+.hljs-type,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-addition,
+.hljs-variable,
+.hljs-template-tag,
+.hljs-template-variable {
+  color: #a6e22e;
+}
+
+.hljs-comment,
+.hljs-quote,
+.hljs-deletion,
+.hljs-meta {
+  color: #75715e;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-doctag,
+.hljs-title,
+.hljs-section,
+.hljs-type,
+.hljs-selector-id {
+  font-weight: bold;
+}
+
+body {
+  font-family: "Source Sans Pro", helvetica, arial;
+}
+
+li {
+  font-weight: 300 !important;
+}
+
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+  font-weight: 900;
+}
+
+.reveal h1 {
+  font-size: 3rem;
+  font-weight: 300;
+}
+
+.reveal h1 span {
+  font-weight: 900;
+}
+
+.reveal p {
+  font-weight: 300;
+}
+
+.reveal section img {
+  margin: 0;
+  background: none;
+  border: 0;
+  box-shadow: none;
+}
+
+.slide-2-content p {
+  background: #ffffff;
+  padding: 15px;
+  border-left: 6px solid #0C1C47;
+  color: #0C1C47;
+}
+
+.slide-2-content p {
+  font-size: 1.8rem;
+}
+
+.slide-2-content span {
+  font-weight: 700;
+}
+
+.slide-3-box {
+  background: #ffffff;
+  color: #0C1C47;
+  margin-top: 15px;
+}
+
+.slide-3-box .col-md-3 {
+  background: #189bb0;
+}
+
+.slide-3-box .col-md-3 .number {
+  color: #ffffff;
+}
+
+.slide-3-box p {
+  padding: 10px;
+  display: inline-block;
+
+}
+
+.slide-4-content h1 {
+  font-size: 8rem;
+  color: #189bb0;
+  font-weight: 700;
+}
+
+.slide-4-content p {
+  color: #0c1c47;
+  font-size: 2.1rem;
+}
+
+.rating-box {
+  background: #ffffff;
+  margin-top: 30px;
+  color: #0c1c47;
+}
+
+h3.slide-5 {
+  font-weight: 700;
+  font-size: 2rem;
+  margin-top: 30px;
+}
+
+.rating-box-top {
+  padding: 10px;
+  font-weight: 300;
+}
+
+.rating-box-bottom {
+  padding: 10px;
+  background: #189bb0;
+  color: #ffffff;
+  font-weight: 900;
+}
+
+.rating-1 {
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.rating-2 .col-md-2 {
+  padding: 20px;
+  background: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.slide-6 h3 {
+  font-size: 2rem;
+  margin-top: 20px;
+}
+
+.slide-6-num {
+  font-size: 4rem;
+  color: #189bb0;
+  font-weight: 900;
+}

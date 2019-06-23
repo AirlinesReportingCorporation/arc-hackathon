@@ -13,6 +13,9 @@
               <div class="">
                 \{{index + 1}}. \{{segment.origin.iata_code}} to \{{segment.destination.iata_code}} (\{{segment.departing_at}}) Airline: \{{segment.operating_carrier.name}}
               </div>
+              <div class="">
+                \{{segment.passengers[0].cabin_class}}
+              </div>
 
 
             </div>

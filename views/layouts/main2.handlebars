@@ -1,0 +1,354 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>reveal.js</title>
+
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/black.css">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/monokai.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+
+			<!-- Title slide -->
+			<section data-background-opacity="4" data-background-image="img/slide-1.jpg">
+				<div class="content-1">
+					<img data-src="https://www2.arccorp.com/globalassets/arc-logos/corporate-logos/arc-logo-l-white-tag.png" alt="" style="max-width: 150px">
+					<h1>Team <span>ARC Attack:</span> <br/>Optimizing Corporate Travel Spend Through Personalized Travel Policies</h1>
+					<h6 style="font-size: 1.4rem; margin-top: 60px;">Team</h6>
+					<p style="font-size: 1.4rem">Sarah Boyd, Ian Fajardo, Scott Gilespie, Sunil Punnoose, Noah
+						Robins, Shelly Younger</p>
+				</div>
+			</section>
+
+
+			<!-- rw stat slide -->
+			<section data-background-color="#0C1C47">
+				<div class="row slide-4-content">
+					<div class="col-md-6">
+						<div style="margin:5px; padding: 10px; background: #ffffff; border-left: 12px solid #189bb0;">
+							<h1>33%</h1>
+							<p>of Road Warriors have a self-reported attrition risk*</p>
+						</div>
+						<div style="margin-top: 20px;">
+							How can we reduce attrition in a cost-effective way?
+						</div>
+
+					</div>
+					<div class="col-md-6">
+						<div style="margin:5px; padding: 10px; background: #ffffff;  border-left: 12px solid #189bb0;">
+							<h1>~7%</h1>
+							<p>of all air spend is lost on unused tickets</p>
+						</div>
+						<div style="margin-top: 20px;">
+							How can we reduce losses from unused tickets?
+						</div>
+					</div>
+				</div>
+				<p style="font-size: 1rem;margin-top: 25px;">*Over the next two years. Source: “Achieving Better Business Travel Results: Insights from U.S. Road Warriors” 2018</p>
+			</section>
+
+
+
+
+
+			<section data-background-image="img/mock-2.jpg">
+				<h2>The Problem</h2>
+				<h1 style="font-size: 8rem">Travel Policies Shouldn’t Be <br/>One-size Fits All</h1>
+			</section>
+
+			<!-- travel poicies diff -->
+			<section>
+				<h2 style="margin-bottom: 20px; padding-bottom: 10px; font-size: 3rem; border-bottom: 6px solid #189bb0;">The Problem (cont.)</h2>
+
+				<div style="color: #189bb0; font-weight: 700; background: #ffffff; margin-top: 30px; color: #0C1C47;padding: 10px;">
+					Same Trip: London to Athens
+				</div>
+
+				<div class="row slide-6">
+					<div class="col-md-6">
+						<h3>Joe, Junior Technician</h3>
+						<p>Rarely travels to attend training</p>
+					</div>
+					<div class="col-md-6">
+						<h3>Rebecca, Sales Executive</h3>
+						<p>Flew 200kms last year to close a big contract</p>
+					</div>
+
+				</div>
+
+				<div style="background: #ffffff; margin-top: 30px; color: #0C1C47;padding: 10px;">
+					Provide more personalization to these travelers in addition to coporate policy
+				</div>
+
+			</section>
+
+
+
+			<!-- what if tool could  -->
+			<section>
+				<h2>Our Solution</h2>
+				<h1></h1>
+				<div class="slide-3-box">
+					<div class="row no-gutters">
+						<div class="col-md-3">
+							<p class="number">1</p>
+						</div>
+						<div class="col-md-9">
+							<p>Give travelers a personalized trip-specific allowance</p>
+						</div>
+					</div>
+				</div>
+				<div class="slide-3-box">
+					<div class="row no-gutters">
+						<div class="col-md-3" style="background: #96BE3C">
+							<p class="number" style="margin-top: 40px;">2</p>
+						</div>
+						<div class="col-md-9">
+							<p>Captures the value of all unused tickets across indirect and direct channels</p>
+						</div>
+					</div>
+				</div>
+				<div class="slide-3-box">
+					<div class="row no-gutters">
+						<div class="col-md-3" style="background: #AB035C">
+							<p class="number" style="margin-top: 40px;">3</p>
+						</div>
+						<div class="col-md-9">
+							<p>Provides clear and actionable data reporting about the benefits</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+
+
+			<!-- 1.friction points -->
+			<section>
+				<h1>Personalizing trip-specific allowance</h1>
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="rating-box">
+							<div class="rating-box-bottom" style="background:#189bb0; font-size: 4rem;">
+								Company sets a Travel Friction budget
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+				<!--
+				<h3 class="slide-5">Give Travelers a Friction Score based off cumulative trips</h3>
+				<div class="row rating-2">
+					<div class="col-md-2" style="background: #AB035C">3,200</div>
+					<div class="col-md-2" style="background: #fb158f">2,400</div>
+					<div class="col-md-2">2,000</div>
+					<div class="col-md-2" style="background: #8ae1ef">1,200</div>
+					<div class="col-md-2" style="background: #33cbe3">9,200</div>
+					<div class="col-md-2" style="background: #189BB0">750</div>
+				</div>
+				<div class="row rating-1">
+					<div class="col-md-2">
+						Traveler 1
+					</div>
+					<div class="col-md-2"></div>
+					<div class="col-md-2"></div>
+					<div class="col-md-2"></div>
+					<div class="col-md-2"></div>
+					<div class="col-md-2"></div>
+				</div>
+			-->
+			</section>
+
+			<section>
+				<h1>Personalizing trip-specific allowance</h1>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="rating-box">
+							<div class="rating-box-bottom" style="background:#96BE3C">
+								Traveler Factors
+							</div>
+							<div class="rating-box-top">
+								<ul>
+									<li>Pay Grade</li>
+									<li>Frequent Flier Status</li>
+									<li>Recent Travel Friction</li>
+								</ul>
+							</div>
+
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="rating-box">
+							<div class="rating-box-bottom" style="background:#96BE3C">
+								Trip Factors
+							</div>
+							<div class="rating-box-top">
+								<ul>
+									<li>Itinierary Friction</li>
+									<li>Supplier's Status</li>
+									<li>Trips Importance</li>
+								</ul>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+			</section>
+
+			<section>
+				<h1>Personalizing trip-specific allowance</h1>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="rating-box">
+							<div class="rating-box-bottom" style="background:#AB035C">
+								Calculate allowance for traveler trip
+							</div>
+							<div class="rating-box-top">
+								<ul>
+									<li>Company's Trip Friction budget</li>
+									<li>Traveler factors</li>
+									<li>Trip Factors</li>
+								</ul>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+			</section>
+
+			<section data-background-color="#ffffff">
+				<h1 style="color: #0C1C47">Capture value of unused tickets</h1>
+				<div class="row no-gutters">
+					<div class="col-md-6">
+						<img style="margin-top:40px;"src="img/tickets.jpg" alt="">
+					</div>
+					<div class="col-md-6">
+						<img src="img/mock-1.png" alt="">
+					</div>
+
+				</div>
+			</section>
+
+			<section data-background-color="#ffffff">
+				<h1 style="color: #0C1C47">Capture value of unused tickets</h1>
+				<div class="row">
+					<div class="col-md-6">
+						<h3 style="font-size: 2rem;">Travler Dashboard</h3>
+						<img src="img/screenshot1.jpg" alt="">
+					</div>
+						<div class="col-md-6">
+							<h3 style="font-size: 2rem;">Road Warrior Attrition Rate</h3>
+							<img src="img/screenshot2.jpg" alt="">
+					</div>
+						</div>
+						<div class="row" style="font-size: 1.3rem;">
+							<div class="col-md-3">
+								<div style="font-size:3rem; color:#189bb0">
+									€1MM
+								</div>
+								<div class="">
+									Invested in Friction Funds
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div style="font-size:3rem; color:#189bb0">
+									+ €0.2MM
+								</div>
+								<div class="">
+									Captured in unused tickets
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div style="font-size:3rem; color:#189bb0">
+									+ €3.6MM
+								</div>
+								<div class="">
+									Retained 24 more road warriors this year
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div style="font-size:3rem; color:#189bb0">
+									= €2.8MM
+								</div>
+								<div class="">
+									Net Annual Benefits
+								</div>
+							</div>
+						</div>
+			</section>
+
+
+			<!-- 2. Unused -->
+
+			<section data-background-color="#ffffff">
+				<h1>Demo</h1>
+				<img src="img/mock-1.png" alt="">
+			</section>
+
+				<section data-background-color="#189bb0">
+					<h1 style="font-size: 4rem; font-weight:900">ARC Coporate Connect</h1>
+					<h3 style="font-weight:300">Channel agnostic <br/>corporate policy platform</h3>
+					<h5>Benefits across the travel ecosystem:</h5>
+					<div class="row slide-2-content">
+						<div class="col-md-6">
+							<p><span>Airlines</span> Enables your omni-channel retailing strategy and growth of ancillary sales</p>
+							<p><span>Agencies</span> Better policy management and data toolkit to provide your corporate customers</p>
+						</div>
+						<div class="col-md-6">
+							<p><span>Corporations</span> Optimize the spend on both travel management and recruiting/retention</p>
+							<p><span>Travelers</span> Personalize your travel experience with ancillaries that make your experience better</p>
+						</div>
+					</div>
+				</section>
+		</div>
+	</div>
+
+	<script src="js/reveal.js"></script>
+
+	<script>
+		// More info about config & dependencies:
+		// - https://github.com/hakimel/reveal.js#configuration
+		// - https://github.com/hakimel/reveal.js#dependencies
+		Reveal.initialize({
+			dependencies: [{
+					src: 'plugin/markdown/marked.js'
+				},
+				{
+					src: 'plugin/markdown/markdown.js'
+				},
+				{
+					src: 'plugin/notes/notes.js',
+					async: true
+				},
+				{
+					src: 'plugin/highlight/highlight.js',
+					async: true
+				}
+			]
+		});
+	</script>
+</body>
+
+</html>

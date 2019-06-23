@@ -10,6 +10,11 @@ var hbs = exphbs.create({
 });
 
 app.use("/public", express.static(__dirname + '/public'));
+app.use("/css", express.static(__dirname + '/css'));
+app.use("/js", express.static(__dirname + '/js'));
+app.use("/plugin", express.static(__dirname + '/plugin'));
+app.use("/lib", express.static(__dirname + '/lib'));
+
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
@@ -21,6 +26,11 @@ if (port == null || port == "") {
 
 var bearerkey = "Bearer " + config.key;
 
+app.get('/slides', function(req, res) {
+  res.render('home', {layout: 'main2'});
+});
+
+
 app.get('/', function(req, res) {
   res.render('home');
 });
@@ -29,22 +39,23 @@ app.get('/order', function(req, res) {
   var cabin = (req.query.cabin === "economy" || req.query.cabin === "premium_economy" || req.query.cabin === "first" || req.query.cabin === "business") ? req.query.cabin : "economy";
 
   var offerId = req.query.offerid;
+  var amount = req.query.amount;
 
   var postData = {
     data: {
       "selected_offers": [
-        "off_00009k74mqD3mp3JnU18j2"
+        "off_00009k7ARSLrtURBRjuwwS"
       ],
       "passengers": [{
         "type": "adult",
-        "given_name": "Adam",
-        "family_name": "West",
+        "given_name": "Ian",
+        "family_name": "Fajardo",
         "born_on": "1979-03-01",
         "title": "mr",
         "gender": "m",
-        "email": "test@example.com",
+        "email": "ifajardo@arccorp.com",
         "phone_number": "+12123456789",
-        "id": "pas_00009k6FgMod44KREVIuqe",
+        "id": "pas_00009k7ARFAktUp8ZVcOJc",
         "address_line_2": "Ste 300",
         "address_line_1": "3000 Wilson Blvd",
         "address_city": "Arlington",
@@ -54,8 +65,8 @@ app.get('/order', function(req, res) {
       }],
       "payments": [{
         "type": "balance",
-        "amount": "999999.55",
-        "currency": "GBP"
+        "amount": "3032.55",
+        "currency": "EUR"
       }]
     }
   };
@@ -83,6 +94,31 @@ app.get('/order', function(req, res) {
 });
 
 
+app.get('/getoffer',function(req,res) {
+
+  let axiosConfig = {
+    headers: {
+      "Content-Type": "application/json",
+      "Accept-Encoding": "gzip",
+      "Duffel-Version": "beta",
+      "Authorization": bearerkey
+    }
+  };
+
+  axios.get('https://api.duffel.com/air/offer_requests/', axiosConfig)
+    .then(response => {
+      console.log("Response loaded from duffel");
+
+      res.send(response.data);
+      //var mydata = removeOutOfPolicy(response.data, 7500.00);
+      //res.send(mydata);
+    })
+    .catch((error) => {
+      res.send(error);
+      console.log(error);
+    })
+});
+
 
 app.get('/realoffer', function(req, res) {
 
@@ -102,8 +138,7 @@ app.get('/realoffer', function(req, res) {
         "origin": "LHR"
       }],
       "passengers": [{
-        "type": "adult",
-        "id": "pas_00009k6FgMod44KREVIuqe"
+        "type": "adult"
       }]
     }
   };
@@ -113,7 +148,6 @@ app.get('/realoffer', function(req, res) {
       "Content-Type": "application/json",
       "Accept-Encoding": "gzip",
       "Duffel-Version": "beta",
-      "Access-Control-Allow-Origin": "*",
       "Authorization": bearerkey
     }
   };
@@ -271,7 +305,7 @@ function dedupe(mydata) {
   for (var i = 0; i < matches.length; i++) {
     var price = offers[matches[i][0]].total_amount;
     var finalIndex = matches[i][0];
-    console.log(price + ":" + finalIndex);
+    //console.log(price + ":" + finalIndex);
     for (var j = 0; j < matches[i].length; j++) {
       var price2 = offers[matches[i][j]].total_amount;
       var finalIndex2 = matches[i][j];
@@ -280,8 +314,9 @@ function dedupe(mydata) {
         finalIndex = finalIndex2;
       }
     }
+    console.log("Final Price: " + price);
     newOffers.push(offers[finalIndex]);
-    console.log(offers[finalIndex]);
+    //console.log(offers[finalIndex]);
   }
 
   mydata.data.offers = newOffers;
